@@ -1,4 +1,4 @@
-package com.iteyes10.tackProject;
+package com.iteyes10.taskProject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

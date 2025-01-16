@@ -1,15 +1,17 @@
-package com.iteyes10.tackProject.domain;
+package com.iteyes10.taskProject.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class Contents {
+public class User {
     @Id
     private String uid;
     @Column
-    private String title;
+    private String pwd;
     @Column
-    private String text;
+    private Long level;
+    @Column
+    private String name;
 }
