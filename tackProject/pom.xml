@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.iteyes10</groupId>
-	<artifactId>tackProject</artifactId>
+	<artifactId>taskProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tackProject</name>
 	<description>iteyes10 Project</description>
