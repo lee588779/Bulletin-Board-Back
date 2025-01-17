@@ -3,6 +3,7 @@ package com.iteyes10.taskProject.service;
 import com.iteyes10.taskProject.domain.User;
 import com.iteyes10.taskProject.repository.UserRepository;
 import com.iteyes10.taskProject.vo.LoginRequest;
+import com.iteyes10.taskProject.vo.LoginResponse;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public String login(LoginRequest loginRequest) {
+    public LoginResponse login(LoginRequest loginRequest) {
         //account id: iteyes10
         //account pwd: 1q2w3e4r! -> $2a$12$9UJlyVTAZ2lcKje/n.QbQ.4doxxL.YHmeknpOHRUPb0VN3yNqJy7m
 
@@ -29,7 +30,7 @@ public class UserService {
         if(user.isPresent()){
             User findUser = user.get();
             if(findUser.getPwd().equals(pwd)){
-                return findUser.getUid();
+                return new LoginResponse(findUser.getUid(), findUser.getName());
             }
             else{
                 return null;

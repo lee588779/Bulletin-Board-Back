@@ -2,8 +2,8 @@ package com.iteyes10.taskProject.controller;
 
 import com.iteyes10.taskProject.service.UserService;
 import com.iteyes10.taskProject.vo.LoginRequest;
+import com.iteyes10.taskProject.vo.LoginResponse;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,16 +20,17 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest loginRequest, HttpSession session){
-        String id = userService.login(loginRequest);
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest, HttpSession session){
+        LoginResponse response = userService.login(loginRequest);
+        //String id = userService.login(loginRequest);
 
-        if(id != null){
-            session.setAttribute("userId", id);
+        if(response != null){
+            session.setAttribute("userId", response.getUid());
 
-            return "success";
+            return ResponseEntity.ok(response); //return "success";
         }
         else
-            return "failure";
+            return ResponseEntity.status(401).body("User not found"); //return "failure";
     }
 
     @PostMapping("/logout")
