@@ -19,6 +19,9 @@ public class UserService {
     }
 
     public String login(LoginRequest loginRequest) {
+        //account id: iteyes10
+        //account pwd: 1q2w3e4r! -> $2a$12$9UJlyVTAZ2lcKje/n.QbQ.4doxxL.YHmeknpOHRUPb0VN3yNqJy7m
+
         String pwd = bCryptPasswordEncoder.encode(loginRequest.getPwd());
 
         Optional<User> user = userRepository.findById(loginRequest.getUid());
