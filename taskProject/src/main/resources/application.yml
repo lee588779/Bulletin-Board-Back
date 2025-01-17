@@ -1,1 +1,11 @@
-spring.application.name=tackProject
+spring:
+    application:
+        name: tackProject
+    jpa: 
+        hibernate: 
+            ddl-auto: validate
+    datasource: 
+        driverClassName: org.mariadb.jdbc.Driver
+        url: jdbc:mariadb://211.188.63.230:3306/board
+        username: root 
+        password: 1q2w3e4r!2
