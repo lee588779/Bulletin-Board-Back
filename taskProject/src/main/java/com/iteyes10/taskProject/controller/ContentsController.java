@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.iteyes10.taskProject.domain.Contents;
 import com.iteyes10.taskProject.dto.board_list;
+import com.iteyes10.taskProject.dto.intValue;
 import com.iteyes10.taskProject.service.ContentsService;
 
 
@@ -24,13 +25,13 @@ public class ContentsController {
     }
 
     @PostMapping("/detail")
-    public Contents contents_detail(@PathVariable String type, @RequestBody int id) {
-        return contentsService.get_detail(id);
+    public Contents contents_detail(@PathVariable String type, @RequestBody intValue id) {
+        return contentsService.get_detail(id.getValue());
     }
     
     @PostMapping("/{type}")
-    public board_list contents_list(@PathVariable String type, @RequestBody int page) {
-        return new board_list(contentsService.get_contents_list(type, page));
+    public board_list contents_list(@PathVariable String type, @RequestBody intValue page) {
+        return new board_list(contentsService.get_contents_list(type, page.getValue()));
     }
 
 
