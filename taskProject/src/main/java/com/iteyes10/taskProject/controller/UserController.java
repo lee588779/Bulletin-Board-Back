@@ -18,24 +18,18 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/test")
-    public String test(){
-        return "test";
-    }
-
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest, HttpSession session){
         LoginResponse response = userService.login(loginRequest);
-        //String id = userService.login(loginRequest);
 
         if(response != null){
             session.setAttribute("userId", response.getUid());
             session.setAttribute("level", response.getLevel());
 
-            return ResponseEntity.ok(response); //return "success";
+            return ResponseEntity.ok(response);
         }
         else
-            return ResponseEntity.status(401).body("User not found"); //return "failure";
+            return ResponseEntity.status(401).body("User not found");
     }
 
     @PostMapping("/logout")
