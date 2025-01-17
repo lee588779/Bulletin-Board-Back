@@ -18,7 +18,9 @@ import com.iteyes10.taskProject.dto.write_data;
 import com.iteyes10.taskProject.repository.ContentsRepository;
 
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class ContentsService {
 
@@ -39,12 +41,13 @@ public class ContentsService {
         }
         return null;
     }
-
+    @Transactional
     public boolean contents_delete(int cid, String uid) {
         Optional<Contents> tmp = repository.findById(cid);
         if(tmp.isPresent()) {
             Contents ct = tmp.get();
             if(ct.getUid().equals(uid)) {
+                log.info("delete : " + cid);
                 repository.deleteById(cid);
                 return true;
             }
@@ -69,6 +72,6 @@ public class ContentsService {
 
     @Transactional
     public Contents contents_write(write_data data, String uid) {
-        return new Contents(data, uid);
+        return repository.save(new Contents(data, uid));
     }
 }

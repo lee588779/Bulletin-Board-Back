@@ -15,8 +15,12 @@ import com.iteyes10.taskProject.dto.write_data;
 import com.iteyes10.taskProject.service.ContentsService;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
+
+
 @RestController
 @RequestMapping("/board")
+@Slf4j
 public class ContentsController {
     
     private final ContentsService contentsService;
@@ -62,10 +66,13 @@ public class ContentsController {
     public Contents contents_write(@RequestBody write_data data, HttpSession session) {
         String uid = (String)session.getAttribute("userId");
         String level = (String)session.getAttribute("level");
+        log.info("uid is : " + uid);
+        log.info("level is : " + level);
         if(uid == null)   
             return null;
-        if(!(data.getType().equals("0") && level.equals("admin")))
-            return null;
+        if(data.getType().equals("0"))
+            if(!level.equals("admin"))
+                return null;
         return contentsService.contents_write(data, uid);
     }
 
