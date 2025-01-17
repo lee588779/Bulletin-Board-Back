@@ -11,6 +11,7 @@
 	<groupId>com.iteyes10</groupId>
 	<artifactId>taskProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>tackProject</name>
 	<description>iteyes10 Project</description>
 	<url/>
