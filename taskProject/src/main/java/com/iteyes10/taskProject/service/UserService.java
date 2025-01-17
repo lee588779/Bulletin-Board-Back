@@ -56,7 +56,7 @@ public class UserService {
         if(user.isPresent()){
             User findUser = user.get();
             if(findUser.getPwd().equals(pwd)){
-                return new LoginResponse(findUser.getUid(), findUser.getName());
+                return new LoginResponse(findUser.getUid(), findUser.getName(), findUser.getLevel());
             }
             else{
                 return null;
