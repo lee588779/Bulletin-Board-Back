@@ -5,23 +5,18 @@ import com.iteyes10.taskProject.repository.UserRepository;
 import com.iteyes10.taskProject.vo.LoginRequest;
 import com.iteyes10.taskProject.vo.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
-import java.util.Optional;
-
 @Service
 public class UserService {
     private UserRepository userRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder){
+    public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     private String hashPassword(String password) throws NoSuchAlgorithmException {
@@ -37,19 +32,13 @@ public class UserService {
     }
 
     public LoginResponse login(LoginRequest loginRequest) {
-        //admin account id: admin
-        //admin account pwd: 1q2w3e4r! -> $2a$10$sqJ.wq.JTxckcx5GDlEZXe.aPTi0V39v1mtX7kHVNGXYBoPx9weaC
-        //account id: iteyes10
-        //account pwd: 1q2w3e4r! -> $2a$10$sqJ.wq.JTxckcx5GDlEZXe.aPTi0V39v1mtX7kHVNGXYBoPx9weaC
 
-        //String pwd = bCryptPasswordEncoder.encode(loginRequest.getPwd());
         String pwd = null;
         try {
             pwd = hashPassword(loginRequest.getPwd());
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(pwd);
 
         Optional<User> user = userRepository.findById(loginRequest.getUid());
 
