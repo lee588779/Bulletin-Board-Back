@@ -4,19 +4,23 @@ import com.iteyes10.taskProject.service.UserService;
 import com.iteyes10.taskProject.vo.LoginRequest;
 import com.iteyes10.taskProject.vo.LoginResponse;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/")
 public class UserController {
     private final UserService userService;
 
+    @Autowired
     public UserController(UserService userService){
         this.userService = userService;
+    }
+
+    @GetMapping("/test")
+    public String test(){
+        return "test";
     }
 
     @PostMapping("/login")
