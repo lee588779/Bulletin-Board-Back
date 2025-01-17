@@ -1,3 +1,6 @@
+server:
+    port: 1000 #임시
+
 spring:
     application:
         name: tackProject
