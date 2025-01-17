@@ -37,7 +37,7 @@ public class UserService {
     }
 
     public LoginResponse login(LoginRequest loginRequest) {
-        //admin account id: admin10
+        //admin account id: admin
         //admin account pwd: 1q2w3e4r! -> $2a$10$sqJ.wq.JTxckcx5GDlEZXe.aPTi0V39v1mtX7kHVNGXYBoPx9weaC
         //account id: iteyes10
         //account pwd: 1q2w3e4r! -> $2a$10$sqJ.wq.JTxckcx5GDlEZXe.aPTi0V39v1mtX7kHVNGXYBoPx9weaC
