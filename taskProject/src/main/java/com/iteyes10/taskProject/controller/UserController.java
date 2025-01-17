@@ -30,6 +30,7 @@ public class UserController {
 
         if(response != null){
             session.setAttribute("userId", response.getUid());
+            session.setAttribute("level", response.getLevel());
 
             return ResponseEntity.ok(response); //return "success";
         }
